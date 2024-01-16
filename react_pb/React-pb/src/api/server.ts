@@ -24,7 +24,7 @@
 
 
 
-
+// my phonebook: https://myphonebook-b48u.onrender.com/
 
 
 
@@ -36,7 +36,11 @@ export const server_call = {
         const response = await fetch(`https://plankton-app-46k8b.ondigitalocean.app/api/contacts`, 
         {
             method: 'GET',
-            mode: 'cors',
+            // mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            },
         });
 
         if (!response.ok){
@@ -52,6 +56,7 @@ export const server_call = {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(data)
         })
@@ -69,6 +74,7 @@ export const server_call = {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(data)
         })
@@ -100,4 +106,3 @@ export const server_call = {
 
 
 
-// my phonebook: https://myphonebook-b48u.onrender.com/

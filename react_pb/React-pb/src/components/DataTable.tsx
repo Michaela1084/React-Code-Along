@@ -10,7 +10,7 @@ const columns: GridColDef[] = [
   { field: 'name', headerName: "Contact Name", flex: 1},
   { field: 'email', headerName: "Email", flex: 1},
   { field: 'phone_number', headerName: "Phone Number", flex: 1 },
-  { field: 'address', headerName: "Adress", flex: 2}
+  { field: 'address', headerName: "Address", flex: 2}
 ]
 
 
@@ -18,7 +18,7 @@ const columns: GridColDef[] = [
 function DataTable() {
   const [ open, setOpen ] = useState(false);
   const { contactData, getData } = useGetData();
-  const [ selectionModel, setSelectionModel ] = useState<any>([])
+  const [ selectionModel, setSelectionModel ] = useState<string[]>([])
   // TODO: write usGetData hook and selections model state change event 
 
   const handleOpen = () => {
@@ -35,7 +35,7 @@ function DataTable() {
   // }
 
   const deleteData = () => {
-    server_call.delete(selectionModel);
+    server_call.delete(selectionModel[0]);
     getData();
     console.log(`Selection Model: ${selectionModel}`)
     setTimeout( () => { window.location.reload() }, 500)
@@ -63,7 +63,7 @@ function DataTable() {
           style={{ height: 400,  width:'100%'}}
           >
             <h2 className="p-3 bg-slate-300 my-2 rounded">My Contacts</h2>
-            <DataGrid rows={contactData} columns={columns} rowsPerPageOptions={[5]}
+            <DataGrid rows={contactData} columns={columns} rowsPerPageOptions={ [5] }
             checkboxSelection={true} 
             onSelectionModelChange={ (item:any) => {
               setSelectionModel(item)
